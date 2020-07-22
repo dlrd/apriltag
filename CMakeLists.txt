@@ -36,27 +36,29 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_INSTALL_LIBDIR}
 )
 
-
+# Smode Tech
 # install library
-install(TARGETS ${PROJECT_NAME} EXPORT apriltagTargets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-)
+#install(TARGETS ${PROJECT_NAME} EXPORT apriltagTargets
+#    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#)
 
+# Smode Tech
 # install header file hierarchy
-file(GLOB_RECURSE HEADER_FILES RELATIVE ${CMAKE_SOURCE_DIR} *.h)
-foreach(HEADER ${HEADER_FILES})
-    string(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
-    install(FILES ${HEADER} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${DIR})
-endforeach()
+#file(GLOB_RECURSE HEADER_FILES RELATIVE ${CMAKE_SOURCE_DIR} *.h)
+#foreach(HEADER ${HEADER_FILES})
+#    string(REGEX MATCH "(.*)[/\\]" DIR ${HEADER})
+#    install(FILES ${HEADER} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${DIR})
+#endforeach()
 
+# Smode Tech
 # export library
-install(EXPORT apriltagTargets
-    FILE apriltagTargets.cmake
-    NAMESPACE apriltag::
-    DESTINATION share/apriltag/cmake
-)
-install(FILES CMake/apriltagConfig.cmake DESTINATION share/apriltag/cmake)
+#install(EXPORT apriltagTargets
+#    FILE apriltagTargets.cmake
+#    NAMESPACE apriltag::
+#    DESTINATION share/apriltag/cmake
+#)
+#install(FILES CMake/apriltagConfig.cmake DESTINATION share/apriltag/cmake)
 export(TARGETS apriltag
     NAMESPACE apriltag::
     FILE apriltagTargets.cmake)
@@ -64,7 +66,7 @@ export(TARGETS apriltag
 FILE(READ apriltag.pc.in PKGC)
 STRING(REGEX REPLACE "^prefix=" "prefix=${CMAKE_INSTALL_PREFIX}" PKGC_CONF "${PKGC}" )
 FILE(WRITE ${PROJECT_BINARY_DIR}/apriltag.pc ${PKGC_CONF})
-install(FILES "${PROJECT_BINARY_DIR}/apriltag.pc" DESTINATION "lib/pkgconfig/")
+# Smode Tech #install(FILES "${PROJECT_BINARY_DIR}/apriltag.pc" DESTINATION "lib/pkgconfig/")
 
 
 # Python wrapper
@@ -98,7 +100,7 @@ add_custom_target(apriltag_python ALL
 
 execute_process(COMMAND python3 -m site --user-site OUTPUT_VARIABLE PY_DEST)
 string(STRIP ${PY_DEST} PY_DEST)
-install(CODE "execute_process(COMMAND cp ${PROJECT_BINARY_DIR}/apriltag${PY_EXT_SUFFIX} ${PY_DEST})")
+# Smode Tech #install(CODE "execute_process(COMMAND cp ${PROJECT_BINARY_DIR}/apriltag${PY_EXT_SUFFIX} ${PY_DEST})")
 endif (NOT Python3_NOT_FOUND AND NOT Numpy_NOT_FOUND AND PYTHONLIBS_FOUND)
 
 
@@ -112,9 +114,9 @@ if(OpenCV_FOUND)
     add_executable(opencv_demo example/opencv_demo.cc)
     target_link_libraries(opencv_demo apriltag ${OpenCV_LIBRARIES})
     set_target_properties(opencv_demo PROPERTIES CXX_STANDARD 11)
-    install(TARGETS opencv_demo RUNTIME DESTINATION bin)
+    # Smode Tech #install(TARGETS opencv_demo RUNTIME DESTINATION bin)
 endif(OpenCV_FOUND)
 
 # install example programs
-install(TARGETS apriltag_demo RUNTIME DESTINATION bin)
+# Smode Tech #install(TARGETS apriltag_demo RUNTIME DESTINATION bin)
 
