@@ -12,7 +12,7 @@ set(APRILTAG_SRCS apriltag.c apriltag_pose.c apriltag_quad_thresh.c)
 # Library
 SET (TAG_FILES tag16h5.c  tag25h9.c tag36h11.c tagCircle21h7.c tagCircle49h12.c tagCustom48h12.c tagStandard41h12.c tagStandard52h13.c) # SMODE TECH glob suxx 
 #file(GLOB TAG_FILES ${CMAKE_SOURCE_DIR}/tag*.c)
-set_source_files_properties(SOURCE ${TAG_FILES} PROPERTIES COMPILE_FLAGS -O0)
+#set_source_files_properties(SOURCE ${TAG_FILES} PROPERTIES COMPILE_FLAGS -O0)
 add_library(${PROJECT_NAME} STATIC ${APRILTAG_SRCS} ${COMMON_SRC} ${TAG_FILES}) # Smode Tech: was SHARED not STATIC
 if (MSVC)
     # FindThreads will not find pthread.h with MSVC
